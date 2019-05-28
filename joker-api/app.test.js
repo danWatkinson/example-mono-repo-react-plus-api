@@ -1,7 +1,7 @@
 const request = require('supertest');
 const assert = require('assert');
 
-const app = require('./app.js');
+const app = require('./app');
 
 const knownDefaultJokes = [
   {id: '1', value: 'my mother in law'},
