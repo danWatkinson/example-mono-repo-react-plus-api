@@ -1,4 +1,5 @@
+
 module.exports = function(req, res, next) {
-  console.log(`get by id: ${req.params.id}`)
-  res.send('respond with a resource');
+  const {id} = req.params;
+  res.send(req.data.getById(id));
 };
