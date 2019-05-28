@@ -6,21 +6,21 @@ router.use(data);
 router.get('/',function(req, res, next) {
   const {dao} = req;
 
-  res.send(dao.list());
+  res.json(dao.list());
 });
 
 router.get('/:id', function(req, res, next) {
   const {id} = req.params;
   const {dao} = req;
 
-  res.send(dao.getById(id));
+  res.json(dao.getById(id));
 });
 
 router.put('/', function(req, res, next) {
   const {joke} = req.body;
   const {dao} = req;
 
-  res.send(dao.put(joke));
+  res.json(dao.put(joke));
 });
 
 module.exports = router;
