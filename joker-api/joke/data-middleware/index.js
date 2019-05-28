@@ -1,7 +1,7 @@
 const JokeData = require('./JokeData');
-const data = new JokeData();
+const dao = new JokeData();
 
 module.exports = function (req, res, next) {
-  req.data = data;
+  req.dao = dao;
   next();
 }
