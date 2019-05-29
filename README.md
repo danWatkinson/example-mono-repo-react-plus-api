@@ -41,7 +41,7 @@ npm start
 ```
 
 ## Dev mode
-# leaves Jest in --watch mode, so all tests within a service run whenever a change is detected..
+### leaves Jest in --watch mode, so all tests within a service run whenever a change is detected..
 
 ```
 chmod 777 ./launchDev.sh
