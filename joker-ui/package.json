@@ -15,7 +15,7 @@
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --coverage",
+    "test": "CI=true react-scripts test --coverage --collectCoverageFrom=src/app/**/*",
     "dev": "react-scripts test",
     "eject": "react-scripts eject",
     "show-coverage": "npm test && open ./coverage/lcov-report/index.html"
