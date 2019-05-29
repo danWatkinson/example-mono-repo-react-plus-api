@@ -15,6 +15,7 @@
     "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "CI-test": "CI=true npm test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
