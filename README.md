@@ -40,6 +40,14 @@ cd ./joker-ui
 npm start
 ```
 
+## Dev mode
+# leaves Jest in --watch mode, so all tests within a service run whenever a change is detected..
+
+```
+chmod 777 ./launchDev.sh
+./launchDev.sh
+```
+
 ## React starter
 https://codeburst.io/building-your-first-react-app-c1f6eb814205
 

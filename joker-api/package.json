@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
-    "test": "jest"
+    "test": "jest",
+    "dev": "jest --watchAll"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

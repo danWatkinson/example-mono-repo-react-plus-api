@@ -3,4 +3,4 @@
 API="$PWD/joker-api"
 UI="$PWD/joker-ui"
 
-(cd $API && npm test)&&(cd $UI && npm test)
+(cd $API && npm run dev)&(cd $UI && npm run dev)
