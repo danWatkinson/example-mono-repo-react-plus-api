@@ -53,10 +53,14 @@ class Joker extends Component {
   renderApp() {
     return (
       <div>
-        <span>{this.state.joke}</span>
-        <button onClick={this.loadAnother}>
-          Load another..
-        </button>
+        <div>
+          <span>{this.state.joke}</span>
+        </div>
+        <div>
+          <button onClick={this.loadAnother}>
+            Load another..
+          </button>
+        </div>
       </div>
     )
   }
