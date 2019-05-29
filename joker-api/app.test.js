@@ -1,5 +1,4 @@
 const request = require('supertest');
-const assert = require('assert');
 
 const app = require('./app');
 
@@ -9,6 +8,16 @@ const knownDefaultJokes = [
 ];
 
 describe('/joke', function() {
+  let cachedFunction;
+
+  beforeEach( () => {
+    cachedFunction = Math.random;
+    Math.random = jest.fn();
+  });
+
+  afterEach( () => {
+    Math.random = cachedFunction;
+  });
 
   it('GET : /joke lists all jokes', function() {
     return request(app)
@@ -20,7 +29,7 @@ describe('/joke', function() {
         const actual = response.body.map( joke => {return {id: joke.id, value: joke.value}} );
         const expected = knownDefaultJokes;
 
-        assert.deepEqual(actual, expected);
+        expect(actual).toEqual(expected);
       });
   });
 
@@ -34,11 +43,36 @@ describe('/joke', function() {
         const actual = {id: response.body.id, value: response.body.value}
         const expected = knownDefaultJokes[0];
 
-        assert.deepEqual(actual, expected);
+        expect(actual).toEqual(expected);
       });
   });
 
-  it('PUT : /JOKE adds a joke', async function() {
+  it('GET : /joke/random picks a random joke', async function() {
+
+    Math.random.mockReturnValue(0);
+    await request(app)
+      .get('/joke/random')
+      .then(response => {
+        const actual = {id: response.body.id, value: response.body.value}
+        const expected = knownDefaultJokes[0];
+
+        expect(actual).toEqual(expected);
+      });
+
+    Math.random.mockReturnValue(0.999);
+    return request(app)
+      .get('/joke/random')
+      .then(response => {
+        const actual = {id: response.body.id, value: response.body.value}
+        const expected = knownDefaultJokes[1];
+
+        expect(actual).toEqual(expected);
+      });
+
+  });
+
+
+  it('PUT : /joke adds a joke', async function() {
     const newJoke = {id: '3', value: 'a man walks into a bar'};
 
     await request(app)
@@ -57,7 +91,7 @@ describe('/joke', function() {
         const actual = {id: response.body.id, value: response.body.value}
         const expected = newJoke;
 
-        assert.deepEqual(actual, expected);
+        expect(actual).toEqual(expected);
       });
   });
 });

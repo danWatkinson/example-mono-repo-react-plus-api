@@ -23,9 +23,8 @@ class JokeDAO {
 
   getRandomJoke() {
     const allJokes = this.list();
-    const randomSelection = Math.floor(Math.random() * allJokes.length);
-
-    return allJokes[randomSelection];
+    const selection = Math.floor(Math.random() * allJokes.length)
+    return allJokes[selection];
   }
 }
 
