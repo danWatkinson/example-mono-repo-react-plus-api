@@ -14,9 +14,10 @@
   "scripts": {
     "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test",
+    "test": "CI=true react-scripts test --coverage",
     "dev": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "show-coverage": "npm test && open ./coverage/lcov-report/index.html"
   },
   "eslintConfig": {
     "extends": "react-app"

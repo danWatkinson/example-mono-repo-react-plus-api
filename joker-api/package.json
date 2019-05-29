@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
-    "test": "jest",
-    "dev": "jest --watchAll"
+    "test": "jest --collect-coverage",
+    "dev": "jest --watchAll",
+    "show-coverage": "npm test && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
