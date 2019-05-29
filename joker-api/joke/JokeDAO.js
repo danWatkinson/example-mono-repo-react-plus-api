@@ -1,6 +1,14 @@
 const loki = require('lokijs');
 const db = new loki('jokes');
 
+function tidyResult(result) {
+  return {id: result.id, value: result.value}
+}
+
+function tidyResults(results) {
+  return results.map(tidyResult);
+}
+
 class JokeDAO {
   constructor() {
     this.jokes = db.addCollection('jokes', { indices: ['id'] });
@@ -10,21 +18,21 @@ class JokeDAO {
   }
 
   list() {
-    return this.jokes.find();
+    return tidyResults(this.jokes.find());
   }
 
   getById(id) {
-    return this.jokes.findOne({'id': { '$eq' : id }});
+    return tidyResult( this.jokes.findOne({'id': { '$eq' : id }}) );
   }
 
   put(joke) {
-    return this.jokes.insert(joke);
+    return tidyResult( this.jokes.insert(joke) );
   }
 
   getRandomJoke() {
     const allJokes = this.list();
     const selection = Math.floor(Math.random() * allJokes.length)
-    return allJokes[selection];
+    return tidyResult( allJokes[selection] );
   }
 }
 

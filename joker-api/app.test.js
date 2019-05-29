@@ -26,10 +26,7 @@ describe('/joke', function() {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(response => {
-        const actual = response.body.map( joke => {return {id: joke.id, value: joke.value}} );
-        const expected = knownDefaultJokes;
-
-        expect(actual).toEqual(expected);
+        expect(response.body).toEqual(knownDefaultJokes);
       });
   });
 
@@ -40,10 +37,7 @@ describe('/joke', function() {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(response => {
-        const actual = {id: response.body.id, value: response.body.value}
-        const expected = knownDefaultJokes[0];
-
-        expect(actual).toEqual(expected);
+        expect(response.body).toEqual(knownDefaultJokes[0]);
       });
   });
 
@@ -53,24 +47,17 @@ describe('/joke', function() {
     await request(app)
       .get('/joke/random')
       .then(response => {
-        const actual = {id: response.body.id, value: response.body.value}
-        const expected = knownDefaultJokes[0];
-
-        expect(actual).toEqual(expected);
+        expect(response.body).toEqual(knownDefaultJokes[0]);
       });
 
     Math.random.mockReturnValue(0.999);
     return request(app)
       .get('/joke/random')
       .then(response => {
-        const actual = {id: response.body.id, value: response.body.value}
-        const expected = knownDefaultJokes[1];
-
-        expect(actual).toEqual(expected);
+        expect(response.body).toEqual(knownDefaultJokes[1]);
       });
 
   });
-
 
   it('PUT : /joke adds a joke', async function() {
     const newJoke = {id: '3', value: 'a man walks into a bar'};
@@ -88,10 +75,7 @@ describe('/joke', function() {
       .expect('Content-Type', /json/)
       .expect(200)
       .then(response => {
-        const actual = {id: response.body.id, value: response.body.value}
-        const expected = newJoke;
-
-        expect(actual).toEqual(expected);
+        expect(response.body).toEqual(newJoke);
       });
   });
 });
