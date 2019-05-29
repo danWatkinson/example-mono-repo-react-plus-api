@@ -1,7 +1,7 @@
 const loki = require('lokijs');
 const db = new loki('jokes');
 
-class JokeData {
+class JokeDAO {
   constructor() {
     this.jokes = db.addCollection('jokes', { indices: ['id'] });
 
@@ -20,6 +20,13 @@ class JokeData {
   put(joke) {
     return this.jokes.insert(joke);
   }
+
+  getRandomJoke() {
+    const allJokes = this.list();
+    const randomSelection = Math.floor(Math.random() * allJokes.length);
+
+    return allJokes[randomSelection];
+  }
 }
 
-module.exports = JokeData;
+module.exports = JokeDAO;
